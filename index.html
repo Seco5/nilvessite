@@ -534,9 +534,9 @@ footer {
         <p class="lang-tr">Bir fikriniz mi var? Birlikte değerlendirelim. Bize ulaşın, birlikte değerlendirelim.</p>
         <p class="lang-en">We're here to bring your idea to life. Reach out and let's explore it together.</p>
         <div class="contact-links">
-          <a href="mailto:hello@nilves.com" class="contact-link">
+          <a href="mailto:nilvestech@outlook.com" class="contact-link">
             <div class="contact-link-icon">✉️</div>
-            hello@nilves.com
+            nilvestech@outlook.com
           </a>
           <a href="tel:+902121234567" class="contact-link">
             <div class="contact-link-icon">📞</div>
@@ -557,17 +557,17 @@ footer {
           <div class="form-group">
             <label class="lang-tr">Ad Soyad</label>
             <label class="lang-en">Full Name</label>
-            <input type="text" placeholder="Ahmet Yılmaz"/>
+            <input type="text" id="f-name" placeholder="Ahmet Yılmaz"/>
           </div>
           <div class="form-group">
             <label>E-posta</label>
-            <input type="email" placeholder="ahmet@sirket.com"/>
+            <input type="email" id="f-email" placeholder="ahmet@sirket.com"/>
           </div>
         </div>
         <div class="form-group">
           <label class="lang-tr">Konu</label>
           <label class="lang-en">Subject</label>
-          <select>
+          <select id="f-subject">
             <option class="lang-tr">Mobil Uygulama</option>
             <option class="lang-en">Mobile App</option>
             <option class="lang-tr">Oyun Geliştirme</option>
@@ -583,10 +583,10 @@ footer {
         <div class="form-group">
           <label class="lang-tr">Mesajınız</label>
           <label class="lang-en">Your Message</label>
-          <textarea placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
+          <textarea id="f-message" placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
         </div>
-        <button class="btn-submit lang-tr">Mesaj Gönder →</button>
-        <button class="btn-submit lang-en">Send Message →</button>
+        <button type="button" onclick="sendForm()" class="btn-submit lang-tr">Mesaj Gönder →</button>
+        <button type="button" onclick="sendForm()" class="btn-submit lang-en">Send Message →</button>
       </div>
     </div>
   </div>
@@ -607,6 +607,30 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
 }
+function sendForm() {
+  var name = (document.getElementById('f-name').value || '').trim();
+  var email = (document.getElementById('f-email').value || '').trim();
+  var subject = document.getElementById('f-subject').value || '';
+  var message = (document.getElementById('f-message').value || '').trim();
+  var isEn = document.documentElement.lang === 'en';
+
+  if (!name || !email || !message) {
+    alert(isEn ? 'Please fill in your name, email and message.' : 'Lütfen ad, e-posta ve mesaj alanlarını doldurun.');
+    return;
+  }
+
+  var mailSubject = 'Nilves İletişim — ' + subject + ' (' + name + ')';
+  var body =
+    (isEn ? 'Name' : 'Ad Soyad') + ': ' + name + '\n' +
+    (isEn ? 'Email' : 'E-posta') + ': ' + email + '\n' +
+    (isEn ? 'Subject' : 'Konu') + ': ' + subject + '\n\n' +
+    (isEn ? 'Message' : 'Mesaj') + ':\n' + message;
+
+  window.location.href = 'mailto:nilvestech@outlook.com'
+    + '?subject=' + encodeURIComponent(mailSubject)
+    + '&body=' + encodeURIComponent(body);
+}
+
 // Init TR
 setLang('tr');
 </script>
