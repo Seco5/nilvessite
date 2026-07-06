@@ -199,10 +199,16 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 /* PROJECTS */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
 .project-card {
+  display: block; text-decoration: none; color: inherit;
   background: var(--dark2); border: 1px solid var(--border); border-radius: 20px;
   overflow: hidden; transition: all .3s;
 }
-.project-card:hover { transform: translateY(-6px); border-color: var(--border); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.project-card:hover { transform: translateY(-6px); border-color: var(--teal); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.project-link {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 1rem;
+  color: var(--teal); font-size: .8rem; font-weight: 700;
+  font-family: var(--font-heading); letter-spacing: -.01em;
+}
 .project-img {
   height: 200px; display: flex; align-items: center; justify-content: center;
   font-size: 4rem; position: relative; overflow: hidden;
@@ -454,13 +460,6 @@ footer {
   <h2 class="section-title lang-en">What We Do</h2>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-icon">📱</div>
-      <h3 class="lang-tr">Mobil Uygulama</h3>
-      <h3 class="lang-en">Mobile App</h3>
-      <p class="lang-tr">iOS ve Android için native ve cross-platform uygulamalar geliştiriyoruz. Flutter ve React Native konusunda uzmanız.</p>
-      <p class="lang-en">We build native and cross-platform apps for iOS and Android. Expert in Flutter and React Native.</p>
-    </div>
-    <div class="service-card">
       <div class="service-icon">🎮</div>
       <h3 class="lang-tr">Oyun Geliştirme</h3>
       <h3 class="lang-en">Game Development</h3>
@@ -468,18 +467,25 @@ footer {
       <p class="lang-en">We create mobile games, hyper-casual experiences, and gamification solutions.</p>
     </div>
     <div class="service-card">
-      <div class="service-icon">🛒</div>
-      <h3 class="lang-tr">E-Ticaret</h3>
-      <h3 class="lang-en">E-Commerce</h3>
-      <p class="lang-tr">Ölçeklenebilir e-ticaret platformları ve entegrasyon çözümleri tasarlıyoruz.</p>
-      <p class="lang-en">We design scalable e-commerce platforms and integration solutions.</p>
+      <div class="service-icon">🌐</div>
+      <h3 class="lang-tr">Web Sitesi Geliştirme</h3>
+      <h3 class="lang-en">Website Development</h3>
+      <p class="lang-tr">Kurumsal siteler, web uygulamaları ve tarayıcı tabanlı araçlar geliştiriyoruz.</p>
+      <p class="lang-en">We build corporate websites, web applications, and browser-based tools.</p>
     </div>
     <div class="service-card">
-      <div class="service-icon">✈️</div>
-      <h3 class="lang-tr">Turizm Teknolojisi</h3>
-      <h3 class="lang-en">Travel Technology</h3>
-      <p class="lang-tr">Otel, tur ve seyahat sektörüne özel dijital altyapı ve rezervasyon çözümleri.</p>
-      <p class="lang-en">Digital infrastructure and booking solutions tailored for hotels, tours, and travel.</p>
+      <div class="service-icon">📱</div>
+      <h3 class="lang-tr">Native Mobil Uygulama Geliştirme</h3>
+      <h3 class="lang-en">Native Mobile App Development</h3>
+      <p class="lang-tr">iOS ve Android için yüksek performanslı native mobil uygulamalar geliştiriyoruz.</p>
+      <p class="lang-en">We develop high-performance native mobile apps for iOS and Android.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚛</div>
+      <h3 class="lang-tr">Lojistik Web & Mobil Uygulamaları</h3>
+      <h3 class="lang-en">Logistics Web & Mobile Apps</h3>
+      <p class="lang-tr">Kargo takibi, filo yönetimi ve saha operasyonları için web ve mobil çözümler.</p>
+      <p class="lang-en">Web and mobile solutions for cargo tracking, fleet management, and field operations.</p>
     </div>
   </div>
 </section>
@@ -491,38 +497,39 @@ footer {
   <h2 class="section-title lang-tr">Öne Çıkan Çalışmalar</h2>
   <h2 class="section-title lang-en">Featured Work</h2>
   <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-img project-bg1">🚛</div>
+    <a class="project-card" href="https://www.ezanvaktiplus.com" target="_blank" rel="noopener">
+      <div class="project-img project-bg1">🕌</div>
       <div class="project-body">
-        <div class="project-tag lang-tr">Lojistik & Teknoloji</div>
-        <div class="project-tag lang-en">Logistics & Technology</div>
-        <h3>Kargonoto</h3>
-        <p class="lang-tr">Küçük ve orta ölçekli işletmeler için geliştirilen akıllı kargo takip ve yönetim platformu.</p>
-        <p class="lang-en">A smart cargo tracking and management platform built for small and medium businesses.</p>
+        <div class="project-tag lang-tr">Native Mobil Uygulama</div>
+        <div class="project-tag lang-en">Native Mobile App</div>
+        <h3>Ezan Vakti Plus</h3>
+        <p class="lang-tr">iOS için geliştirdiğimiz İslami asistan uygulaması: namaz vakitleri, kıble bulucu, zikirmatik, Kuran radyosu ve 15+ özellik.</p>
+        <p class="lang-en">An Islamic assistant app we built for iOS: prayer times, Qibla finder, digital counter, Quran radio, and 15+ features.</p>
+        <span class="project-link">ezanvaktiplus.com →</span>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-img project-bg2">🎮</div>
+    </a>
+    <a class="project-card" href="https://www.devonekit.com" target="_blank" rel="noopener">
+      <div class="project-img project-bg2">🛠️</div>
       <div class="project-body">
-        <div class="project-tag lang-tr">Mobil Oyun</div>
-        <div class="project-tag lang-en">Mobile Game</div>
-        <h3 class="lang-tr">Hypercasual Seri</h3>
-        <h3 class="lang-en">Hypercasual Series</h3>
-        <p class="lang-tr">App Store ve Play Store'da yayınlanan hyper-casual mobil oyun serisi.</p>
-        <p class="lang-en">Hyper-casual mobile game series published on App Store and Play Store.</p>
+        <div class="project-tag lang-tr">Web Uygulaması</div>
+        <div class="project-tag lang-en">Web Application</div>
+        <h3>DevOneKit</h3>
+        <p class="lang-tr">Geliştiriciler için 50+ ücretsiz, tarayıcı tabanlı araç: JSON/SQL formatlama, kodlama-çözme ve dönüştürme — hepsi cihazda çalışır.</p>
+        <p class="lang-en">50+ free browser-based dev tools: JSON/SQL formatting, encoding, and conversion — all running locally.</p>
+        <span class="project-link">devonekit.com →</span>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-img project-bg3">✈️</div>
+    </a>
+    <a class="project-card" href="https://www.pandinyo.com" target="_blank" rel="noopener">
+      <div class="project-img project-bg3">🐼</div>
       <div class="project-body">
-        <div class="project-tag lang-tr">Turizm</div>
-        <div class="project-tag lang-en">Travel</div>
-        <h3 class="lang-tr">Tur Rezervasyon Uygulaması</h3>
-        <h3 class="lang-en">Tour Booking App</h3>
-        <p class="lang-tr">Güney Türkiye'deki turizm operatörleri için geliştirilen mobil rezervasyon uygulaması.</p>
-        <p class="lang-en">A mobile booking application developed for tourism operators in southern Turkey.</p>
+        <div class="project-tag lang-tr">Eğitim Uygulaması</div>
+        <div class="project-tag lang-en">Education App</div>
+        <h3>Pandinyo</h3>
+        <p class="lang-tr">Senaryo tabanlı iş İngilizcesi öğrenme uygulaması: 8 modül, oyunlaştırılmış kariyer seviyeleri ve günlük seri takibi.</p>
+        <p class="lang-en">A scenario-based business English learning app: 8 modules, gamified career levels, and daily streaks.</p>
+        <span class="project-link">pandinyo.com →</span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -608,14 +615,14 @@ footer {
           <label class="lang-tr">Konu</label>
           <label class="lang-en">Subject</label>
           <select id="f-subject">
-            <option class="lang-tr">Mobil Uygulama</option>
-            <option class="lang-en">Mobile App</option>
             <option class="lang-tr">Oyun Geliştirme</option>
             <option class="lang-en">Game Development</option>
-            <option class="lang-tr">E-Ticaret</option>
-            <option class="lang-en">E-Commerce</option>
-            <option class="lang-tr">Turizm Çözümü</option>
-            <option class="lang-en">Travel Solution</option>
+            <option class="lang-tr">Web Sitesi Geliştirme</option>
+            <option class="lang-en">Website Development</option>
+            <option class="lang-tr">Native Mobil Uygulama</option>
+            <option class="lang-en">Native Mobile App</option>
+            <option class="lang-tr">Lojistik Web & Mobil</option>
+            <option class="lang-en">Logistics Web & Mobile</option>
             <option class="lang-tr">Diğer</option>
             <option class="lang-en">Other</option>
           </select>
