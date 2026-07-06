@@ -482,10 +482,6 @@ footer {
     <li><a href="#blog" class="lang-tr">Blog</a><a href="#blog" class="lang-en">Blog</a></li>
     <li><a href="#contact" class="lang-tr">İletişim</a><a href="#contact" class="lang-en">Contact</a></li>
   </ul>
-  <div class="nav-lang">
-    <button onclick="setLang('tr')" id="btn-tr" class="active">TR</button>
-    <button onclick="setLang('en')" id="btn-en">EN</button>
-  </div>
 </nav>
 
 <!-- HERO -->
@@ -638,6 +634,13 @@ footer {
         <p class="lang-tr">Çevik metodolojilerle hızlı prototipleme ve iterasyon yapıyoruz.</p>
         <p class="lang-en">We use agile methodologies for fast prototyping and iteration.</p>
       </div>
+      <div class="about-card">
+        <div class="about-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3 class="lang-tr">Çok Dilli Geliştirme</h3>
+        <h3 class="lang-en">Multilingual Development</h3>
+        <p class="lang-tr">Web sitelerinizi ve mobil uygulamalarınızı çok dilli olarak geliştiriyoruz; markanızı yerel ve global kullanıcılara aynı anda ulaştırıyoruz.</p>
+        <p class="lang-en">We build your websites and mobile apps in multiple languages, reaching both local and global users at once.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -660,14 +663,14 @@ footer {
       <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
       <h3 class="lang-tr">Web Sitesi Geliştirme</h3>
       <h3 class="lang-en">Website Development</h3>
-      <p class="lang-tr">Kurumsal siteler, web uygulamaları ve tarayıcı tabanlı araçlar geliştiriyoruz.</p>
+      <p class="lang-tr">Kurumsal siteler, web uygulamaları ve tarayıcı tabanlı araçlar geliştiriyoruz. İhtiyaca göre çok dilli (Türkçe, İngilizce ve daha fazlası) altyapı kuruyoruz.</p>
       <p class="lang-en">We build corporate websites, web applications, and browser-based tools.</p>
     </div>
     <div class="service-card">
       <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
       <h3 class="lang-tr">Native Mobil Uygulama Geliştirme</h3>
       <h3 class="lang-en">Native Mobile App Development</h3>
-      <p class="lang-tr">iOS ve Android için yüksek performanslı native mobil uygulamalar geliştiriyoruz.</p>
+      <p class="lang-tr">iOS ve Android için yüksek performanslı native mobil uygulamalar geliştiriyoruz. Uygulamalarımızı çok dilli olarak, global kullanıcılara hazır şekilde tasarlıyoruz.</p>
       <p class="lang-en">We develop high-performance native mobile apps for iOS and Android.</p>
     </div>
     <div class="service-card">
@@ -836,8 +839,8 @@ footer {
 function setLang(lang) {
   document.querySelectorAll('.lang-tr').forEach(el => { el.style.display = lang === 'tr' ? '' : 'none'; if (lang === 'tr') el.classList.add('in'); });
   document.querySelectorAll('.lang-en').forEach(el => { el.style.display = lang === 'en' ? '' : 'none'; if (lang === 'en') el.classList.add('in'); });
-  document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  var bt = document.getElementById('btn-tr'); if (bt) bt.classList.toggle('active', lang === 'tr');
+  var be = document.getElementById('btn-en'); if (be) be.classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
 }
 function sendForm() {
