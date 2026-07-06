@@ -67,10 +67,112 @@ nav {
 
 /* HERO */
 #hero {
-  min-height: 100vh; display: flex; flex-direction: column;
-  justify-content: center; align-items: flex-start;
-  padding: 8rem 2rem 4rem; max-width: 1200px; margin: 0 auto;
+  min-height: 100vh; display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: 3rem; align-items: center;
+  padding: 7rem 2rem 4rem; max-width: 1200px; margin: 0 auto;
   position: relative;
+}
+.hero-left { position: relative; z-index: 1; }
+
+/* HERO VISUAL — floating phone composition */
+.hero-visual { position: relative; height: 600px; z-index: 1; pointer-events: none; }
+.hv-glow {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: 480px; height: 200px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(93,223,217,.28), rgba(93,223,217,.06) 55%, transparent 75%);
+  filter: blur(10px);
+}
+.hv-ring {
+  position: absolute; left: 50%; border: 1px solid rgba(93,223,217,.28);
+  border-radius: 50%; transform: translateX(-50%);
+}
+.hv-ring.r1 { width: 300px; height: 90px; bottom: 40px; }
+.hv-ring.r2 { width: 420px; height: 126px; bottom: 22px; opacity: .6; }
+.hv-ring.r3 { width: 540px; height: 162px; bottom: 4px; opacity: .3; }
+
+.phone {
+  position: absolute;
+  background: linear-gradient(160deg, #17211d, #0a0f0d);
+  border: 1px solid #29403a; border-radius: 30px; padding: 9px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.65), 0 0 50px rgba(93,223,217,.07), inset 0 1px 0 rgba(255,255,255,.06);
+  will-change: transform;
+}
+.phone-screen {
+  background: linear-gradient(175deg, #0c1210, #090d0c);
+  border: 1px solid #182722; border-radius: 22px;
+  height: 100%; padding: 18px 16px; overflow: hidden;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.p-main {
+  width: 235px; height: 470px; left: 50%; top: 20px;
+  transform: translateX(-50%);
+  z-index: 3; animation: phoneFloat 7s ease-in-out infinite;
+}
+.p-side { width: 180px; height: 350px; z-index: 2; }
+.p-left  { left: -6px; top: 120px; transform: rotate(-8deg); animation: phoneFloatL 9s ease-in-out infinite; }
+.p-right { right: -6px; top: 96px; transform: rotate(8deg); animation: phoneFloatR 8s ease-in-out infinite; }
+@keyframes phoneFloat  { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-14px); } }
+@keyframes phoneFloatL { 0%,100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(-8deg) translateY(-10px); } }
+@keyframes phoneFloatR { 0%,100% { transform: rotate(8deg) translateY(0); } 50% { transform: rotate(8deg) translateY(-12px); } }
+
+.ps-notch { width: 64px; height: 5px; border-radius: 3px; background: #1e2e2a; margin: 0 auto 4px; flex-shrink: 0; }
+.ps-title { font-family: var(--font-heading); font-weight: 800; font-size: .8rem; color: var(--text); line-height: 1.3; }
+.ps-title.big { font-size: .95rem; }
+.ps-sub { font-size: .65rem; color: var(--muted); }
+.ps-metric { font-family: var(--font-heading); font-weight: 900; font-size: 1.15rem; color: var(--teal); }
+.ps-chart { width: 100%; height: 64px; flex-shrink: 0; }
+.ps-chart .area { fill: rgba(93,223,217,.12); }
+.ps-chart .line { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; }
+.ps-row { display: flex; align-items: center; gap: 8px; }
+.ps-ico {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  background: var(--dark3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.ps-ico svg { width: 13px; height: 13px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ps-bars { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.ps-bars i { display: block; height: 5px; border-radius: 3px; background: #1e2e2a; }
+.ps-bars i.fill { background: linear-gradient(90deg, var(--teal-dark), var(--teal)); }
+.ps-val { font-family: var(--font-heading); font-weight: 700; font-size: .65rem; color: var(--muted2); }
+.ps-progress { width: 96px; height: 96px; margin: 6px auto; }
+.ps-progress .track { fill: none; stroke: #1e2e2a; stroke-width: 7; }
+.ps-progress .bar { fill: none; stroke: var(--teal); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 201; stroke-dashoffset: 30; transform: rotate(-90deg); transform-origin: center; }
+.ps-progress text { fill: var(--text); font-family: var(--font-heading); font-weight: 800; font-size: 17px; text-anchor: middle; }
+.ps-btn {
+  margin-top: auto; background: var(--teal); color: #001a18;
+  font-family: var(--font-heading); font-weight: 800; font-size: .7rem;
+  text-align: center; padding: 9px; border-radius: 10px;
+}
+.ps-bubble {
+  background: var(--dark3); border: 1px solid var(--border);
+  border-radius: 12px 12px 12px 3px; padding: 10px;
+  font-size: .65rem; color: var(--muted2); line-height: 1.5;
+}
+.ps-wave { width: 100%; height: 30px; margin-top: 4px; }
+.ps-wave path { fill: none; stroke: var(--teal); stroke-width: 1.6; opacity: .7; }
+.ps-input {
+  margin-top: auto; display: flex; align-items: center; gap: 8px;
+  background: var(--dark3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 8px 10px; font-size: .62rem; color: var(--muted);
+}
+.ps-input svg { width: 13px; height: 13px; fill: var(--teal); margin-left: auto; flex-shrink: 0; }
+
+.chip {
+  position: absolute; width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(13,20,18,.92); border: 1px solid #29403a;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 800; font-size: .8rem; color: var(--teal);
+  box-shadow: 0 14px 34px rgba(0,0,0,.5), 0 0 24px rgba(93,223,217,.08);
+  z-index: 4; backdrop-filter: blur(6px);
+}
+.chip svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.c1 { top: 24px; left: 6%; animation: float1 11s ease-in-out infinite; }
+.c2 { top: 46%; right: -2%; animation: float2 13s ease-in-out infinite; }
+.c3 { bottom: 120px; left: -2%; animation: float2 15s ease-in-out infinite; }
+
+@media (max-width: 1024px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
 }
 .hero-circles {
   position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
@@ -85,7 +187,7 @@ nav {
 @keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,50px); } }
 @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px,-40px); } }
 @media (prefers-reduced-motion: reduce) {
-  .hc1, .hc2, .marquee-inner { animation: none !important; }
+  .hc1, .hc2, .marquee-inner, .phone, .chip { animation: none !important; }
   html { scroll-behavior: auto; }
 }
 .hero-tag {
@@ -174,7 +276,12 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
   background: var(--dark2); border: 1px solid var(--border);
   border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;
 }
-.about-icon { font-size: 2rem; }
+.about-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: var(--dark3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.about-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .about-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; }
 .about-card p { color: var(--muted2); font-size: .875rem; line-height: 1.6; }
 .about-cards { display: flex; flex-direction: column; gap: 1rem; }
@@ -187,12 +294,14 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 }
 .service-card:hover { border-color: var(--teal); transform: translateY(-4px); }
 .service-card:hover .service-icon { background: var(--teal); }
+.service-card:hover .service-icon svg { stroke: #001a18; }
 .service-icon {
   width: 48px; height: 48px; border-radius: 12px;
   background: var(--dark3); display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; margin-bottom: 1rem; transition: background .25s;
+  margin-bottom: 1rem; transition: background .25s;
   border: 1px solid var(--border);
 }
+.service-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke .25s; }
 .service-card h3 { font-family: var(--font-heading); font-size: .95rem; font-weight: 700; margin-bottom: .5rem; }
 .service-card p { color: var(--muted2); font-size: .825rem; line-height: 1.6; }
 
@@ -211,8 +320,15 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 }
 .project-img {
   height: 200px; display: flex; align-items: center; justify-content: center;
-  font-size: 4rem; position: relative; overflow: hidden;
+  position: relative; overflow: hidden;
 }
+.project-img svg {
+  width: 72px; height: 72px; stroke: var(--teal); fill: none;
+  stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+  opacity: .9; filter: drop-shadow(0 0 24px rgba(93,223,217,.35));
+  transition: transform .3s;
+}
+.project-card:hover .project-img svg { transform: scale(1.08); }
 .project-img::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(to bottom, transparent 50%, var(--dark2));
@@ -260,7 +376,12 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
   background: var(--dark); transition: all .2s;
 }
 .contact-link:hover { border-color: var(--teal); color: var(--teal); }
-.contact-link-icon { font-size: 1.1rem; }
+.contact-link-icon {
+  width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+  background: var(--dark3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-link-icon svg { width: 16px; height: 16px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 /* FORM */
 .contact-form { display: flex; flex-direction: column; gap: 1rem; }
@@ -369,14 +490,15 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
+<div class="hero-left">
   <div class="hero-tag lang-tr">Dijital Teknoloji Ajansı</div>
   <div class="hero-tag lang-en">Digital Technology Agency</div>
   <h1 class="hero-headline">
     <span class="lang-tr">Fikirleri<br/><span class="accent">Dijitale</span><br/>Taşıyoruz.</span>
     <span class="lang-en">Turning Ideas<br/><span class="accent">Digital</span><br/>Since Day One.</span>
   </h1>
-  <p class="hero-sub lang-tr">Mobil uygulamalar, oyunlar, e-ticaret ve turizm çözümleriyle markanızı dijital dünyada güçlendiriyoruz.</p>
-  <p class="hero-sub lang-en">We power brands with mobile apps, games, e-commerce and travel tech solutions across every industry.</p>
+  <p class="hero-sub lang-tr">Oyunlar, web siteleri, native mobil uygulamalar ve lojistik çözümleriyle markanızı dijital dünyada güçlendiriyoruz.</p>
+  <p class="hero-sub lang-en">We power brands with games, websites, native mobile apps and logistics solutions across every industry.</p>
   <div class="hero-cta">
     <a href="#contact" class="btn-primary lang-tr">Projenizi Başlatın →</a>
     <a href="#contact" class="btn-primary lang-en">Start Your Project →</a>
@@ -400,6 +522,74 @@ footer {
       <div class="stat-label lang-en">Years Experience</div>
     </div>
   </div>
+</div>
+
+<div class="hero-visual" aria-hidden="true">
+  <div class="hv-glow"></div>
+  <div class="hv-ring r3"></div>
+  <div class="hv-ring r2"></div>
+  <div class="hv-ring r1"></div>
+
+  <div class="phone p-side p-left">
+    <div class="phone-screen">
+      <div class="ps-title"><span class="lang-tr">İngilizce Öğren</span><span class="lang-en">Learn English</span></div>
+      <div class="ps-sub"><span class="lang-tr">Günlük hedef tamamlandı</span><span class="lang-en">Daily goal completed</span></div>
+      <svg class="ps-progress" viewBox="0 0 80 80">
+        <circle class="track" cx="40" cy="40" r="32"/>
+        <circle class="bar" cx="40" cy="40" r="32"/>
+        <text x="40" y="46">85%</text>
+      </svg>
+      <div class="ps-btn"><span class="lang-tr">Devam Et</span><span class="lang-en">Continue</span></div>
+    </div>
+  </div>
+
+  <div class="phone p-main">
+    <div class="phone-screen">
+      <div class="ps-notch"></div>
+      <div class="ps-title big"><span class="lang-tr">İyi günler, Nilves</span><span class="lang-en">Good day, Nilves</span></div>
+      <div class="ps-sub"><span class="lang-tr">Genel bakış · Bu ay</span><span class="lang-en">Overview · This month</span></div>
+      <div class="ps-metric">+%24,5</div>
+      <svg class="ps-chart" viewBox="0 0 200 60" preserveAspectRatio="none">
+        <path class="area" d="M0 50 C20 30 35 46 55 36 S90 42 110 25 S150 32 170 15 L200 9 V60 H0 Z"/>
+        <path class="line" d="M0 50 C20 30 35 46 55 36 S90 42 110 25 S150 32 170 15 L200 9"/>
+      </svg>
+      <div class="ps-sub"><span class="lang-tr">Aktif projeler</span><span class="lang-en">Active projects</span></div>
+      <div class="ps-row">
+        <div class="ps-ico"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <div class="ps-bars"><i class="fill" style="width:76%"></i><i style="width:100%"></i></div>
+        <span class="ps-val">%76</span>
+      </div>
+      <div class="ps-row">
+        <div class="ps-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <div class="ps-bars"><i class="fill" style="width:58%"></i><i style="width:100%"></i></div>
+        <span class="ps-val">%58</span>
+      </div>
+      <div class="ps-row">
+        <div class="ps-ico"><svg viewBox="0 0 24 24"><path d="M14 7h4l3 4v5h-2M1 5h13v11H1z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+        <div class="ps-bars"><i class="fill" style="width:64%"></i><i style="width:100%"></i></div>
+        <span class="ps-val">%64</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone p-side p-right">
+    <div class="phone-screen">
+      <div class="ps-title"><span class="lang-tr">AI Asistan</span><span class="lang-en">AI Assistant</span></div>
+      <div class="ps-bubble"><span class="lang-tr">Merhaba! Size nasıl yardımcı olabilirim?</span><span class="lang-en">Hello! How can I help you today?</span></div>
+      <svg class="ps-wave" viewBox="0 0 120 30" preserveAspectRatio="none">
+        <path d="M0 15 Q6 4 12 15 T24 15 T36 15 T48 15 T60 15 T72 15 T84 15 T96 15 T108 15 T120 15"/>
+      </svg>
+      <div class="ps-input">
+        <span class="lang-tr">Mesajınızı yazın…</span><span class="lang-en">Type your message…</span>
+        <svg viewBox="0 0 24 24"><path d="M2 21l20-9L2 3v7l14 2-14 2v7z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="chip c1">&lt;/&gt;</div>
+  <div class="chip c2">AI</div>
+  <div class="chip c3"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg></div>
+</div>
 </section>
 
 <!-- MARQUEE -->
@@ -407,15 +597,15 @@ footer {
   <div class="marquee-inner">
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Mobil Uygulama</span><span class="lang-en">Mobile App</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Oyun Geliştirme</span><span class="lang-en">Game Development</span></div>
-    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">E-Ticaret</span><span class="lang-en">E-Commerce</span></div>
-    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Turizm Teknolojisi</span><span class="lang-en">Travel Tech</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Web Siteleri</span><span class="lang-en">Websites</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Lojistik Çözümleri</span><span class="lang-en">Logistics Solutions</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">UI/UX Tasarım</span><span class="lang-en">UI/UX Design</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Backend Geliştirme</span><span class="lang-en">Backend Dev</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">iOS & Android</span><span class="lang-en">iOS & Android</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Mobil Uygulama</span><span class="lang-en">Mobile App</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Oyun Geliştirme</span><span class="lang-en">Game Development</span></div>
-    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">E-Ticaret</span><span class="lang-en">E-Commerce</span></div>
-    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Turizm Teknolojisi</span><span class="lang-en">Travel Tech</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Web Siteleri</span><span class="lang-en">Websites</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Lojistik Çözümleri</span><span class="lang-en">Logistics Solutions</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">UI/UX Tasarım</span><span class="lang-en">UI/UX Design</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">Backend Geliştirme</span><span class="lang-en">Backend Dev</span></div>
     <div class="marquee-item"><div class="marquee-dot"></div><span class="lang-tr">iOS & Android</span><span class="lang-en">iOS & Android</span></div>
@@ -435,14 +625,14 @@ footer {
     </div>
     <div class="about-cards">
       <div class="about-card">
-        <div class="about-icon">🎯</div>
+        <div class="about-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
         <h3 class="lang-tr">Odaklı Yaklaşım</h3>
         <h3 class="lang-en">Focused Approach</h3>
         <p class="lang-tr">Her projede net hedefler belirliyor, zamanında ve bütçe dahilinde teslim ediyoruz.</p>
         <p class="lang-en">We set clear goals for every project and deliver on time, within budget.</p>
       </div>
       <div class="about-card">
-        <div class="about-icon">🚀</div>
+        <div class="about-icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
         <h3 class="lang-tr">Hızlı Teslimat</h3>
         <h3 class="lang-en">Fast Delivery</h3>
         <p class="lang-tr">Çevik metodolojilerle hızlı prototipleme ve iterasyon yapıyoruz.</p>
@@ -460,28 +650,28 @@ footer {
   <h2 class="section-title lang-en">What We Do</h2>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-icon">🎮</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 6H7a5 5 0 0 0-5 5v3a3 3 0 0 0 5.4 1.8L9 14h6l1.6 1.8A3 3 0 0 0 22 14v-3a5 5 0 0 0-5-5z"/><path d="M6 11h4M8 9v4"/><circle cx="15.5" cy="10.5" r=".5"/><circle cx="17.5" cy="12.5" r=".5"/></svg></div>
       <h3 class="lang-tr">Oyun Geliştirme</h3>
       <h3 class="lang-en">Game Development</h3>
       <p class="lang-tr">Mobil oyunlar, hyper-casual deneyimler ve gamification çözümleri üretiyoruz.</p>
       <p class="lang-en">We create mobile games, hyper-casual experiences, and gamification solutions.</p>
     </div>
     <div class="service-card">
-      <div class="service-icon">🌐</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
       <h3 class="lang-tr">Web Sitesi Geliştirme</h3>
       <h3 class="lang-en">Website Development</h3>
       <p class="lang-tr">Kurumsal siteler, web uygulamaları ve tarayıcı tabanlı araçlar geliştiriyoruz.</p>
       <p class="lang-en">We build corporate websites, web applications, and browser-based tools.</p>
     </div>
     <div class="service-card">
-      <div class="service-icon">📱</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
       <h3 class="lang-tr">Native Mobil Uygulama Geliştirme</h3>
       <h3 class="lang-en">Native Mobile App Development</h3>
       <p class="lang-tr">iOS ve Android için yüksek performanslı native mobil uygulamalar geliştiriyoruz.</p>
       <p class="lang-en">We develop high-performance native mobile apps for iOS and Android.</p>
     </div>
     <div class="service-card">
-      <div class="service-icon">🚛</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 7h4l3 4v5h-2M1 5h13v11H1zM8 16h6"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
       <h3 class="lang-tr">Lojistik Web & Mobil Uygulamaları</h3>
       <h3 class="lang-en">Logistics Web & Mobile Apps</h3>
       <p class="lang-tr">Kargo takibi, filo yönetimi ve saha operasyonları için web ve mobil çözümler.</p>
@@ -498,7 +688,7 @@ footer {
   <h2 class="section-title lang-en">Featured Work</h2>
   <div class="projects-grid">
     <a class="project-card" href="https://www.ezanvaktiplus.com" target="_blank" rel="noopener">
-      <div class="project-img project-bg1">🕌</div>
+      <div class="project-img project-bg1"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/><path d="M17 4.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6.6-1.4z"/></svg></div>
       <div class="project-body">
         <div class="project-tag lang-tr">Native Mobil Uygulama</div>
         <div class="project-tag lang-en">Native Mobile App</div>
@@ -509,7 +699,7 @@ footer {
       </div>
     </a>
     <a class="project-card" href="https://www.devonekit.com" target="_blank" rel="noopener">
-      <div class="project-img project-bg2">🛠️</div>
+      <div class="project-img project-bg2"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 9l3 3-3 3M12 15h5"/></svg></div>
       <div class="project-body">
         <div class="project-tag lang-tr">Web Uygulaması</div>
         <div class="project-tag lang-en">Web Application</div>
@@ -520,7 +710,7 @@ footer {
       </div>
     </a>
     <a class="project-card" href="https://www.pandinyo.com" target="_blank" rel="noopener">
-      <div class="project-img project-bg3">🐼</div>
+      <div class="project-img project-bg3"><svg viewBox="0 0 24 24"><path d="M22 9.5 12 4 2 9.5l10 5.5 10-5.5z"/><path d="M6 12v4.5c0 1.7 2.7 3 6 3s6-1.3 6-3V12"/><path d="M22 9.5V15"/></svg></div>
       <div class="project-body">
         <div class="project-tag lang-tr">Eğitim Uygulaması</div>
         <div class="project-tag lang-en">Education App</div>
@@ -582,19 +772,19 @@ footer {
         <p class="lang-en">We're here to bring your idea to life. Reach out and let's explore it together.</p>
         <div class="contact-links">
           <a href="mailto:nilvestech@outlook.com" class="contact-link">
-            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 9 6 9-6"/></svg></div>
             nilvestech@outlook.com
           </a>
           <a href="tel:+902121234567" class="contact-link">
-            <div class="contact-link-icon">📞</div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3A19.5 19.5 0 0 1 5.2 13 19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
             +90 212 123 45 67
           </a>
           <a href="#" class="contact-link">
-            <div class="contact-link-icon">📍</div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             İstanbul, Türkiye
           </a>
           <a href="#" class="contact-link">
-            <div class="contact-link-icon">💼</div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></div>
             LinkedIn — Nilves
           </a>
         </div>
