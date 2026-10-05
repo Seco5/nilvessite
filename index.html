@@ -344,6 +344,12 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .project-bg1 { background: linear-gradient(135deg, #0d2e28, #1a5040); }
 .project-bg2 { background: linear-gradient(135deg, #1a1a2e, #2d1b4e); }
 .project-bg3 { background: linear-gradient(135deg, #2e1a0d, #4e3a1b); }
+.project-bg4 { background: linear-gradient(180deg, rgba(9,13,12,.1), rgba(9,13,12,.35)), url('/bubblegoals/img/bg.jpg') center 35% / cover no-repeat; }
+.project-img .project-art {
+  height: 160px; width: auto; position: relative; z-index: 1; margin-top: 30px;
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.5)); transition: transform .3s;
+}
+.project-card:hover .project-img .project-art { transform: scale(1.06) translateY(-4px); }
 
 /* BLOG */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
@@ -748,6 +754,18 @@ body::before {
   <h2 class="section-title lang-tr">Öne Çıkan Çalışmalar</h2>
   <h2 class="section-title lang-en">Featured Work</h2>
   <div class="projects-grid">
+    <a class="project-card" href="/bubblegoals/">
+      <div class="project-img project-bg4"><img class="project-art" src="/bubblegoals/img/dino.png" alt="" loading="lazy" width="123" height="160"/></div>
+      <div class="project-body">
+        <div class="project-tag lang-tr">Mobil Oyun</div>
+        <div class="project-tag lang-en">Mobile Game</div>
+        <h3>Bubblegoals</h3>
+        <p class="lang-tr">iPhone ve iPad için dinozor temalı balon patlatma oyunu: 5000 seviye, 12 dünya, Dino Gücü, günlük ödüller ve görevler.</p>
+        <p class="lang-en">A dinosaur-themed bubble shooter for iPhone and iPad: 5000 levels, 12 worlds, Dino Power, daily rewards and quests.</p>
+        <span class="project-link lang-tr">Oyunu incele →</span>
+        <span class="project-link lang-en">See the game →</span>
+      </div>
+    </a>
     <a class="project-card" href="https://www.ezanvaktiplus.com" target="_blank" rel="noopener">
       <div class="project-img project-bg1"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/><path d="M17 4.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6.6-1.4z"/></svg></div>
       <div class="project-body">
